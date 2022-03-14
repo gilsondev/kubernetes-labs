@@ -8,24 +8,8 @@ spec:
   containers:
     - name: sistema-noticias-container
       image: aluracursos/sistema-noticias:1
-      env:
-        - name: "HOST_DB"
-          valueFrom:
-            configMapKeyRef:
-              name: sistema-configmap
-              key: HOST_DB
-        - name: "DATABASE_DB"
-          valueFrom:
-            configMapKeyRef:
-              name: sistema-configmap
-              key: DATABASE_DB
-        - name: "USER_DB"
-          configMapKeyRef:
-            name: sistema-configmap
-            key: USER_DB
-        - name: "PASS_DB"
-          configMapKeyRef:
-            name: sistema-configmap
-            key: PASS_DB
+      envFrom:
+        - configMapRef:
+          name: sistema-configmap
       ports:
         - containerPort: 80
