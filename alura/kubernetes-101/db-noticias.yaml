@@ -1,28 +1,28 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: sistema-noticias
+  name: db-noticias
   labels:
-    app: sistema-noticias
+    app: db-noticias
 spec:
   containers:
-    - name: sistema-noticias-container
-      image: aluracursos/sistema-noticias:1
+    - name: db-noticias-containers
+      image: aluracursos/mysql-db:1
       env:
-        - name: "HOST_DB"
+        - name: "MYSQL_ROOT_PASSWORD"
           valueFrom:
             configMapKeyRef:
               name: db-configmap
               key: MYSQL_ROOT_PASSWORD
-        - name: "DATABASE_DB"
+        - name: "MYSQL_DATABASE"
           valueFrom:
             configMapKeyRef:
               name: db-configmap
               key: MYSQL_DATABASE
-        - name: "PASS_DB"
+        - name: "MYSQL_PASSWORD"
           valueFrom:
             configMapKeyRef:
               name: db-configmap
               key: MYSQL_PASSWORD
       ports:
-        - containerPort: 80
+        - containerPort: 3306
