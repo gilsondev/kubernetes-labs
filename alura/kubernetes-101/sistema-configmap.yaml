@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata: sistema-configmap
 data:
-  HOST_DB: svc-db-noticias
+  HOST_DB: svc-db-noticias:3306
   DATABASE_DB: empresa
   USER_DB: root
   PASS_DB: q1w2e3r4
