@@ -12,17 +12,20 @@ spec:
         - name: "HOST_DB"
           valueFrom:
             configMapKeyRef:
-              name: db-configmap
-              key: MYSQL_ROOT_PASSWORD
+              name: sistema-configmap
+              key: HOST_DB
         - name: "DATABASE_DB"
           valueFrom:
             configMapKeyRef:
-              name: db-configmap
-              key: MYSQL_DATABASE
+              name: sistema-configmap
+              key: DATABASE_DB
+        - name: "USER_DB"
+          configMapKeyRef:
+            name: sistema-configmap
+            key: USER_DB
         - name: "PASS_DB"
-          valueFrom:
-            configMapKeyRef:
-              name: db-configmap
-              key: MYSQL_PASSWORD
+          configMapKeyRef:
+            name: sistema-configmap
+            key: PASS_DB
       ports:
         - containerPort: 80
