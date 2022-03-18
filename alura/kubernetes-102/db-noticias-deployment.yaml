@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-noticias-deployment
+spec:
+  template:
+    metadata:
+      name: db-noticias
+      labels:
+        app: db-noticias
+    spec:
+      containers:
+        - name: db-noticias-containers
+          image: aluracursos/mysql-db:1
+          env:
+            - name: "MYSQL_ROOT_PASSWORD"
+              valueFrom:
+                configMapKeyRef:
+                  name: db-configmap
+                  key: MYSQL_ROOT_PASSWORD
+            - name: "MYSQL_DATABASE"
+              valueFrom:
+                configMapKeyRef:
+                  name: db-configmap
+                  key: MYSQL_DATABASE
+            - name: "MYSQL_PASSWORD"
+              valueFrom:
+                configMapKeyRef:
+                  name: db-configmap
+                  key: MYSQL_PASSWORD
+          ports:
+            - containerPort: 3306
+  selector:
+    matchLabels:
+      app: db-noticias
