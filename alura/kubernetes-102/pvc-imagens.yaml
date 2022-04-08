@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: PersistenceVolumeClaim
+metadata:
+  name: imagens-pvc
+spec:
+  accessMode:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
